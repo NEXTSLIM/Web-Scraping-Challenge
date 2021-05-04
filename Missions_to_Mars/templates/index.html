@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <style>
+      p {
+        font-size: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        padding: 5%;
+      }
+
+      footer {
+        padding: 1%;
+        background-color: rgb(168, 53, 0);
+        color: white;
+      }
+
+      th, td {
+        padding: 4px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      tr:nth-child(even) {background-color: #f2f2f2;}
+
+  </style>
+
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center" style="background-color: rgb(168, 53, 0); color: white;">
+      <h1>Mission to Mars</h1>
+      <p>Images and information about Mars.</p>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button" style="background-color: rgb(104, 104, 93); border-color: black ;">Scrape New Data</a></p>
+    </div>
+    <div>
+        <div class="container" style="background-color: rgb(248, 248, 248);">
+            <div class="row">
+              <div class="col-md-12" style="padding-top: 5%; padding-left: 5%; padding-right:5%; ">
+                <h2>Latest Mars News</h2>
+                <hr style="border-width: 2px; border-color:  rgb(168, 53, 0);">
+                <h3>{{mars_data.news_title}}</h3>
+                <p>{{mars_data.news_p}}</p>
+              </div>
+              <div class="col-md-7" style="overflow:hidden; ">
+                <img class="img-fluid" src="{{mars_data.featured_image_url}}" alt="Featured Mars Image" style="max-height:650px; max-width: auto; padding: 5%; "> 
+              </div>
+              <div class="col-md-5" style="padding-right: 5%; padding-top: 1%;">
+                  <div lass="col-12" style="border-color: black; border: 1px; background-color: white; padding: 5%; padding-top: 1%; padding-bottom: 1%">
+                      <h3>Current Weather on Mars</h3>
+                      <hr style="border-width: 2px; border-color:  rgb(168, 53, 0); margin-top: 0em; margin-bottom: 0.5em;">
+                      <p style="font-size: 15px;">{{mars_data.mars_weather}}</p>
+                  </div>
+                  <br>
+                  <div lass="col-12" style="padding: 5%; margin-bottom: 10%; background-color: white; padding-top: 0.1%; padding-bottom: 2%;">
+                    <h3>Mars Facts</h3>
+                    <hr style="border-width: 2px; border-color:  rgb(168, 53, 0); margin-top: 0em; margin-bottom: 1em;">
+                      {{ mars_data.mars_facts_html|safe }}
+                  </div>
+              </div>
+            </div>
+        </div>
+        <br><hr><br>
+        <div class="container" style="background-color: rgb(248, 248, 248);">
+          <div class="row" >
+            <h2 style="text-align: center;">Mars Hemispheres</h2>
+            <hr style="border-width: 2px; border-color:  rgb(168, 53, 0);">
+            {% for item in mars_data.hemisphere_image_urls %} 
+                <div class="col-md-6">
+                    <img src="{{item.img_url}}" alt="{{item.title}}" style="max-width:100%; height:auto; padding: 5%; background-color:white;"> 
+                    <h3 style="text-align: center;" style="background: white; color: red;">{{item.title}}</h3>
+                    <hr style="border-width: 2px; border-color:  rgb(168, 53, 0);">
+                </div>
+            {% endfor %}
+            
+          </div>
+        </div>
+        <br><br>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+      <a href="https://www.linkedin.com/in/cesarmosquera/en" target="_blank"> Cesar Mosquera</a>
+    </div>
+  </footer>
+
+</body>
+
+</html>
